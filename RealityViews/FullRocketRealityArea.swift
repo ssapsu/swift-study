@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import RealityKit
+import RealityKitContent
 
 struct FullRocketRealityArea: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        RealityView { content in
+            guard let entity = try? await Entity(named: "Immersive", in:
+                realityKitContentBundle) else {
+                fatalError("Unable to load scene model")
+            }
+            content.add(entity)
+        }
     }
 }
 
